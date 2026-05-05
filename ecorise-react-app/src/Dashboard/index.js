@@ -7,7 +7,6 @@ import { usePickups } from '../hooks/useFetchPickups';
 import { useProducts } from '../hooks/useFetchProducts';
 import { useUsers } from '../hooks/useFetchUsers';
 import { usePayment } from '../hooks/useFetchPayments';
-
 function Dashboard() {
   const navigate = useNavigate();
   const { data: pickups, loading: pickupsLoading } = usePickups();

@@ -1,169 +1,159 @@
-.payment-form-container {
-  height: 100vh;
+/* ==========================================================================
+   GLOBAL APP WRAPPER SYSTEM
+   ========================================================================== */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #fff5f5 !important;
+}
+
+.feedback-main-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #F9F9F9;
-  padding: 20px;
-  box-sizing: border-box;
-  padding-left: 550px;
-}
-body{
-  background-color: azure;
-}
-.payment-form {
-  background: white;
-  padding: 30px 60px;
-  border: 1px solid maroon;
-  border-radius: 95px;
-  max-width: 420px;
+  background-color: #fff5f5;
+  height: 100vh;
   width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   UNIFORM MAIN DASHBOARD WHITE LAYOUT CONTAINER CARD
+   ========================================================================== */
+.feedback-table-container {
+  background-color: white;
+  box-shadow: 0 4px 20px rgba(183, 16, 29, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1;
+  margin-top: 70px !important;
+  margin-right: 20px !important;
+  margin-left: 20px !important;
+  margin-bottom: 10px !important;
+  height: calc(100vh - 90px) !important;
+  border-radius: 24px;
+}
+
+/* ==========================================================================
+   HEADER COMPONENT 
+   ========================================================================== */
+.feedback-header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  flex-shrink: 0;
+  border-bottom: 2px solid #e9d3d3;
+}
+
+.feedback-title {
+  color: #7d1215;
+  font-weight: 700;
+  font-size: 35px;
+  margin: 0;
+  user-select: none;
+}
+
+/* ==========================================================================
+   FORM CONTAINER DESIGN MODIFICATIONS
+   ========================================================================== */
+.payment-form-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 40px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.form-grid-layout {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  box-sizing: border-box;
+  max-width: 500px;
+  /* Safe, elegant vertical inputs layout width */
+  width: 100%;
 }
+
 .payment-label {
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
   display: flex;
   flex-direction: column;
-  gap: 8px; }
-.payment-button {
-  padding: 12px;
-  cursor: pointer;
-  font-size: 16px;
-  background-color: maroon;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  gap: 8px;
 }
-.payment-button:disabled {
-  background-color: #6C757D;
-  cursor: not-allowed;
-}
-.payment-button:not(:disabled):hover {
-  background-color: maroon;
-}
-.error-message {
-  color: red;
-  margin: 0;
-}
-.success-message {
-  color: green;
-  margin: 0;
-}
+
 .payment-label input,
 .payment-label textarea {
-  height: 40px;
-  padding: 8px 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  height: 44px;
+  padding: 10px 14px;
+  font-size: 14px;
+  border: 1.5px solid #e9d3d3;
+  border-radius: 8px;
   box-sizing: border-box;
-  resize: vertical; }
+  background-color: #fff;
+  color: #333;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
 .payment-label textarea {
-  height: 90px;
+  height: 100px;
+  resize: none;
 }
-@media(width: 1024px) {
-  body{
-    overflow-y: scroll;
-  }
-  .payment-form-container {
-  width: 100px;
-  height: 100vh;
+
+.payment-label input:focus,
+.payment-label textarea:focus {
+  border-color: #b7101d;
+  /* Snaps to theme accent line color on select focus */
+}
+
+/* ==========================================================================
+   ACTION BUTTON ROWS & NOTIFICATION MESSAGES
+   ========================================================================== */
+.payment-action-row {
   display: flex;
-  width: 700px;
   align-items: center;
-  background-color: #F9F9F9;
-  padding: 20px;
-  box-sizing: border-box;
-  padding-left: 200px;
-  margin-left: -60px;
-}
-  .payment-form {
-  position: absolute;
-  background: white;
-  padding: 20px 30px;
-  border: 1px solid maroon;
-  border-radius: 95px;
-  max-width: 480px;
-  display: flex;
-  flex-direction: column;
   gap: 20px;
-  box-sizing: border-box;
-  font-size: small;
-  width: 300px;
-  margin-left: 430px;
-  margin-top: 20px;
-  .payment-label textarea {
-  height: 50px;
+  margin-top: 30px;
 }
-  .payment-button {
-  padding: 12px ;
-  cursor: pointer;
-  width: 150px;
-  font-size: 16px;
-  background-color: maroon;
+
+.material-btn {
+  background-color: #7d1215;
   color: white;
   border: none;
-  margin-left: 40px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-}
-}
-@media(min-width: 1268px)and (max-width: 1300px){
-  body{
-    overflow-y: scroll;
-  }
-  .payment-form-container {
-  width: 100px;
-  height: 100vh;
-  display: flex;
-  width: 700px;
-  align-items: center;
-  background-color: #F9F9F9;
-  padding: 20px;
-  box-sizing: border-box;
-  padding-left: 200px;
-  margin-left: -60px;
-}
-  .payment-form {
-  position: absolute;
-  background: white;
-  padding: 20px 30px;
-  border: 1px solid maroon;
-  border-radius: 95px;
-  max-width: 480px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  box-sizing: border-box;
-  font-size: small;
-  width: 400px;
-  margin-left: 630px;
-  margin-top: 20px;
-  .payment-label textarea {
-  height: 50px;
-}
-  .payment-button {
-  padding: 12px ;
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 15px;
   cursor: pointer;
-  width: 150px;
-  font-size: 16px;
-  background-color: maroon;
-  color: white;
-  border: none;
-  margin-left: 100px;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-}
+  transition: background-color 0.2s ease;
+  user-select: none;
 }
 
+.material-btn:hover:not(:disabled) {
+  background-color: #d33c41;
+}
 
+.material-btn:disabled {
+  background-color: #ccc;
+  color: #6c757d;
+  cursor: not-allowed;
+}
 
+.error-message {
+  color: #c62828;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0;
+}
 
-
-
+.success-message {
+  color: #2e7d32;
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0;
+}

@@ -8,10 +8,10 @@ html, body {
 .main-content {
   padding: 20px ;
   font-family: Arial, sans-serif;
-  background: white;
+  background: #fff5f5;
   min-height: 100vh;
   max-width: 1200px;
-  margin-left: 22%;
+  /* margin-left: 22%; */
 }
 
 .rewards-title {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 
 import SignupForm from './Signup';
@@ -11,35 +11,45 @@ import Feedback from './Feedback';
 import Dashboard from './Dashboard';
 import LoginScreen from './Login';
 import Sidebar from './shared-component/SideBar';
+import Settings from './Settings';
+
 function AppContent() {
   const location = useLocation();
-  const noSidebarRoutes = ['/login', '/signup','/teaser']; 
+
+  const noSidebarRoutes = ['/login', '/signup', '/teaser'];
   const hideSidebar = noSidebarRoutes.includes(location.pathname);
+
+  const [collapsed, setCollapsed] = useState(false);
+
   return (
-    <div style={{ display: 'flex' }}>
-      {!hideSidebar && <Sidebar />}
+    <>
+      {/* SIDEBAR */}
+      {!hideSidebar && (
+        <Sidebar
+          collapsed={collapsed}
+          setCollapsed={setCollapsed}
+        />
+      )}
+
+      {/* MAIN CONTENT */}
       <div
-        style={{
-       flex: 1,
-      minHeight: '100vh',
-      boxSizing: 'border-box',
-      marginRight: !hideSidebar ? '200px' : 0,
-        }}
+        className="main-content"
       >
         <Routes>
-            <Route path="/" element={<Navigate to="/teaser" replace />} />
+          <Route path="/" element={<Navigate to="/teaser" replace />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/material" element={<MaterialTable />} />
           <Route path="/pickup" element={<PickupTable />} />
-          <Route path="/payment" element={<PaymentForm />} />
+          <Route path="/payments" element={<PaymentForm />} />
           <Route path="/reward" element={<Rewards />} />
           <Route path="/teaser" element={<Teaser />} />
-          <Route path="/feedback" element={<Feedback />} /> 
+          <Route path="/feedback" element={<Feedback />} />
           <Route path="/login" element={<LoginScreen />} />
           <Route path="/signup" element={<SignupForm />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </div>
-    </div>
+    </>
   );
 }
 

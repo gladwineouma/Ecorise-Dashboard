@@ -3,11 +3,8 @@ import useFetchPickups from "../hooks/useFetchPickupData";
 import { useNavigate } from "react-router-dom";
 import "./index.css";
 
-const ROW_OPTIONS = [5, 10, 15, "All"];
 
 function PickupPaginationBar({
-  rowsPerPage,
-  setRowsPerPage,
   currentPage,
   setCurrentPage,
   totalPages,
@@ -16,60 +13,56 @@ function PickupPaginationBar({
   totalPending
 }) {
   return (
-    <div className="material-pagination-bar">
-      <div>
-        <label htmlFor="rowsPerPage">Rows per page:</label>
-        <select
-          id="rowsPerPage"
-          className="material-pagination-select"
-          value={rowsPerPage}
-          onChange={e => {
-            setRowsPerPage(e.target.value === "All" ? "All" : Number(e.target.value));
-            setCurrentPage(1);
-          }}
-        >
-          {ROW_OPTIONS.map(opt => (
-            <option key={opt} value={opt}>{opt}</option>
-          ))}
-        </select>
+    <div className="material-pagination-bar" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%", padding: "16px 40px", boxSizing: "border-box" }}>
+
+      {/* LEFT GAP SIDE GROUP: INLINE PAGINATION TIMELINES */}
+      <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        {!isAll && (
+          <>
+            <button
+              className="material-pagination-btn"
+              onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              type="button"
+            >
+              Prev
+            </button>
+
+            <span style={{ fontSize: "15px", fontWeight: 400, color: "#000", margin: "0 4px" }}>
+              Page {currentPage} of {totalPages}
+            </span>
+
+            <button
+              className="material-pagination-btn"
+              onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages || totalPages <= 1}
+              type="button"
+            >
+              Next
+            </button>
+          </>
+        )}
       </div>
-      {!isAll && totalPages > 1 && (
-        <div className="material-pagination-controls">
-          <button
-            className="material-pagination-btn"
-            onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
-            disabled={currentPage === 1}
-            type="button"
-          >
-            Prev
-          </button>
-          <span>Page {currentPage} of {totalPages}</span>
-          <button
-            className="material-pagination-btn"
-            onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-            disabled={currentPage === totalPages}
-            type="button"
-          >
-            Next
-          </button>
-        </div>
-      )}
-      <div className="total-count" style={{ marginLeft: "auto", fontWeight: 500 }}>
-        Confirmed: <span className="confirmed-count">{totalConfirmed}</span> | Pending: <span className="pending-count">{totalPending}</span>
+
+      {/* 🌟 RIGHT SIDE GROUP: RESTORED SUMMARY METRICS */}
+      <div className="total-count" style={{ fontWeight: 600, fontSize: "14px", color: "#7d1215" }}>
+        Confirmed: <span className="confirmed-count" style={{ paddingRight: "8px", color: "#2e7d32" }}>{totalConfirmed}</span> | Pending: <span className="pending-count" style={{ paddingLeft: "8px", color: "#c62828" }}>{totalPending}</span>
       </div>
+
     </div>
   );
 }
+
 
 function PickupTable({ onMaterialClick }) {
   const { pickups: allPickups, loading, error } = useFetchPickups();
   const navigate = useNavigate();
 
   const [localPickups, setLocalPickups] = useState([]);
-  const [rowsPerPage, setRowsPerPage] = useState(ROW_OPTIONS[0]);
+  const [rowsPerPage, setRowsPerPage] = useState(5)
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedRowId, setSelectedRowId] = useState(null); 
+  const [selectedRowId, setSelectedRowId] = useState(null);
   const [paidPickups, setPaidPickups] = useState(new Set());
 
   useEffect(() => {
@@ -139,7 +132,7 @@ function PickupTable({ onMaterialClick }) {
     }
     const confirmed = window.confirm(`Are you sure you want to make payment to ${pickup.name || "this trader"}?`);
     if (confirmed) {
-      setPaidPickups((prev) => new Set(prev).add(pickupId));    
+      setPaidPickups((prev) => new Set(prev).add(pickupId));
       navigate(`/payment`);
     }
   };
@@ -151,20 +144,6 @@ function PickupTable({ onMaterialClick }) {
   return (
     <div className="pickup-main-container">
       <div className="pickup-table-container">
-        <header className="pickup-header">
-          <div className="title">ECORISE</div>
-          <div className="search-container">
-            <label htmlFor="searchInput" className="search-label"></label>
-            <input
-              id="searchInput"
-              className="search-input"
-              type="search"
-              placeholder="Search"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
-          </div>
-        </header>
         <div className="pickup-request-bar">
           <p>PickUp Requests</p>
         </div>
@@ -201,9 +180,8 @@ function PickupTable({ onMaterialClick }) {
                 return (
                   <tr
                     key={rowId}
-                    className={`${pickup.status === "Pending" ? "pending-row" : "confirmed-row"} ${
-                      isSelected ? "selected-row" : ""
-                    }`}
+                    className={`${pickup.status === "Pending" ? "pending-row" : "confirmed-row"} ${isSelected ? "selected-row" : ""
+                      }`}
                     onClick={() => setSelectedRowId(rowId)}
                     style={{ cursor: "pointer" }}
                   >

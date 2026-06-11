@@ -1,0 +1,399 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #fff5f5 !important;
+}
+
+.feedback-main-container {
+    display: flex;
+    background-color: #fff5f5;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    position: relative;
+    margin-top: -5px;
+}
+.settings-coming-soon-wrapper {
+    background-color: white;
+    box-shadow: 0 4px 20px rgba(183, 16, 29, 0.1);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex: 1;
+    margin-top: 70px !important;
+    margin-right: 20px !important;
+    margin-left: 20px !important;
+    margin-bottom: 10px !important;
+    height: calc(100vh - 90px) !important;
+    border-radius: 24px;
+}
+.high-motion-scene {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at center, #ffffff 0%, #fffbfb 100%) !important;
+    perspective: 1000px;
+}
+.particle-dust {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: rgba(183, 16, 29, 0.2);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 5;
+}
+.pd-1 {
+    top: 20%;
+    left: 30%;
+    animation: floatDustParticle 6s infinite linear;
+}
+.pd-2 {
+    top: 70%;
+    left: 40%;
+    animation: floatDustParticle 9s infinite linear -2s;
+}
+.pd-3 {
+    top: 40%;
+    left: 80%;
+    animation: floatDustParticle 7s infinite linear -4s;
+}
+.pd-4 {
+    top: 85%;
+    left: 75%;
+    animation: floatDustParticle 11s infinite linear -1s;
+}
+.kinetic-animation-box {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.radar-wave {
+    position: absolute;
+    border: 1px solid rgba(183, 16, 29, 0.3);
+    border-radius: 50%;
+    animation: radarPingPulse 3s infinite cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+.rw-1 {
+    width: 120px;
+    height: 120px;
+}
+.rw-2 {
+    width: 120px;
+    height: 120px;
+    animation-delay: 1.5s;
+}
+.cinematic-glow {
+    width: 110px;
+    height: 110px;
+    background-color: #ffffff;
+    border: 3px double #8B0000;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(139, 0, 0, 0.15);
+    animation: engineHoverFloat 4s infinite ease-in-out;
+    z-index: 2;
+}
+.extreme-spin {
+    font-size: 65px;
+    color: #8B0000;
+    animation: mechanicalSpinClockwise 4s infinite linear;
+}
+.inner-floating-wrench {
+    position: absolute;
+    font-size: 22px;
+    color: #DA6304;
+    animation: wrenchCounterOrbital 3s infinite linear;
+}
+.micro-gear-box {
+    position: absolute;
+    top: 28px;
+    left: 24px;
+    z-index: 1;
+}
+.spinning-micro-gear {
+    font-size: 38px;
+    color: rgba(183, 16, 29, 0.4);
+    animation: mechanicalSpinCounterClockwise 4s infinite linear;
+}
+.hammer-arm-pivot {
+    position: absolute;
+    top: 15px;
+    right: -5px;
+    width: 100px;
+    height: 100px;
+    transform-origin: bottom left;
+    z-index: 3;
+    animation: mechanicalHammerAction 1.5s infinite cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+.swinging-hammer-icon {
+    font-size: 42px;
+    color: #DA6304;
+    transform: rotate(-30deg);
+}
+.anvil-impact-point {
+    position: absolute;
+    bottom: 45px;
+    right: 50px;
+    width: 12px;
+    height: 4px;
+    background-color: #333;
+    border-radius: 50%;
+    z-index: 1;
+}
+.coming-soon-title {
+    color: #7d1215;
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+    letter-spacing: -0.02em;
+    user-select: none;
+}
+.elastic-text span {
+    display: inline-block;
+    animation: bouncingTextWave 2s infinite ease-in-out;
+}
+.elastic-text span:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.elastic-text span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.elastic-text span:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.elastic-text span:nth-child(4) {
+    animation-delay: 0.4s;
+}
+
+.elastic-text span:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
+.elastic-text span:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+.elastic-text span:nth-child(7) {
+    animation-delay: 0.7s;
+}
+
+.elastic-text span:nth-child(8) {
+    animation-delay: 0.8s;
+}
+
+.coming-soon-subtitle {
+    color: #555;
+    font-size: 16px;
+    font-weight: 400;
+    max-width: 460px;
+    line-height: 1.6;
+    margin: 0 0 30px 0;
+}
+
+.progress-bar-track {
+    width: 220px;
+    height: 6px;
+    background-color: #f1e3e3;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.neon-border {
+    border: 1px solid rgba(139, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(183, 16, 29, 0.05);
+}
+
+.hypersonic-pulse {
+    position: relative;
+    height: 100%;
+    width: 100% !important;
+    background: linear-gradient(90deg, #7d1215, #DA6304, #7d1215);
+    background-size: 200% 100%;
+    animation: loadingBarGradientFlow 1.5s infinite linear;
+}
+
+.light-beam-sweep {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    filter: blur(3px);
+    animation: laserBeamSweep 1.2s infinite linear;
+}
+.construction-tag-badge {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #8B0000;
+    padding: 6px 16px;
+    border-radius: 30px;
+    margin-top: 35px;
+    box-shadow: 0 8px 15px rgba(139, 0, 0, 0.2);
+    animation: cautionBadgeBounce 2s infinite ease-in-out;
+    user-select: none;
+}
+
+.badge-text-alert {
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.stripe-pattern {
+    width: 15px;
+    height: 6px;
+    background: repeating-linear-gradient(45deg, #DA6304, #DA6304 3px, #8B0000 3px, #8B0000 6px);
+    border-radius: 2px;
+}
+@keyframes mechanicalSpinClockwise {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes mechanicalSpinCounterClockwise {
+    0% {
+        transform: rotate(360deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes wrenchCounterOrbital {
+    0% {
+        transform: rotate(0deg) translateX(32px) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg) translateX(32px) rotate(360deg);
+    }
+}
+
+@keyframes engineHoverFloat {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-8px) rotate(2deg);
+    }
+}
+
+@keyframes mechanicalHammerAction {
+
+    0%,
+    100% {
+        transform: rotate(0deg);
+    }
+
+    45% {
+        transform: rotate(-45deg);
+    }
+
+    50% {
+        transform: rotate(12deg);
+    }
+}
+
+@keyframes radarPingPulse {
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1.6);
+        opacity: 0;
+    }
+}
+
+@keyframes bouncingTextWave {
+
+    0%,
+    100% {
+        transform: translateY(0);
+        color: #7d1215;
+    }
+
+    50% {
+        transform: translateY(-12px);
+        color: #DA6304;
+    }
+}
+
+@keyframes laserBeamSweep {
+    0% {
+        left: -30px;
+    }
+
+    100% {
+        left: 100%;
+    }
+}
+
+@keyframes loadingBarGradientFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+@keyframes cautionBadgeBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+@keyframes floatDustParticle {
+    0% {
+        transform: translateY(0) translateX(0) scale(0.8);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-80px) translateX(25px) scale(1.1);
+        opacity: 0;
+    }
+}

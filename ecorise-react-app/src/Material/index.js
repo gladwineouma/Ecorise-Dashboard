@@ -78,50 +78,39 @@ function AddMaterialModal({ open, onClose, onAdd }) {
   );
 }
 
+// 🌟 Paste this function directly into your MaterialPricing index.js file
 function MaterialPaginationBar({
-  rowsPerPage,
-  setRowsPerPage,
   currentPage,
   setCurrentPage,
   totalPages,
   isAll
 }) {
   return (
-    <div className="material-pagination-bar">
-      <div>
-        <label htmlFor="rows-per-page">Rows per page:</label>
-        <select
-          id="rows-per-page"
-          className="material-pagination-select"
-          value={rowsPerPage}
-          onChange={e => {
-            setRowsPerPage(e.target.value === "All" ? "All" : Number(e.target.value));
-            setCurrentPage(1);
-          }}
-        >
-          {ROW_OPTIONS.map(opt => (
-            <option key={opt} value={opt}>{opt}</option>
-          ))}
-        </select>
-      </div>
-      {!isAll && totalPages > 1 && (
-        <div className="material-pagination-controls">
+    <div className="material-pagination-bar" style={{ display: "flex", alignItems: "center", gap: "12px", padding: "16px 40px" }}>
+      {!isAll && (
+        <>
           <button
             className="material-pagination-btn"
             onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
             disabled={currentPage === 1}
+            type="button"
           >
             Prev
           </button>
-          <span>Page {currentPage} of {totalPages}</span>
+
+          <span style={{ fontSize: "15px", fontWeight: 400, color: "#000", margin: "0 4px" }}>
+            Page {currentPage} of {totalPages}
+          </span>
+
           <button
             className="material-pagination-btn"
             onClick={() => setCurrentPage(p => Math.min(totalPages, p + 1))}
-            disabled={currentPage === totalPages}
+            disabled={currentPage === totalPages || totalPages <= 1}
+            type="button"
           >
             Next
           </button>
-        </div>
+        </>
       )}
     </div>
   );
@@ -184,7 +173,7 @@ function MaterialPricing() {
     }
   };
 
-  
+
   const filteredMaterials = materials.filter(mat => {
     const lowerTerm = searchTerm.toLowerCase();
     const createdAtStr = mat.created_at ? new Date(mat.created_at).toLocaleString() : "";
@@ -205,7 +194,7 @@ function MaterialPricing() {
   const isAll = rowsPerPage === "All";
   const paginatedMaterials = isAll ? sortedMaterials : sortedMaterials.slice((currentPage - 1) * pageSize, currentPage * pageSize);
 
-  
+
   useEffect(() => {
     if (currentPage > totalPages) setCurrentPage(1);
   }, [rowsPerPage, totalRows, totalPages, currentPage]);
@@ -213,20 +202,6 @@ function MaterialPricing() {
   return (
     <div className="pickup-main-container">
       <div className="pickup-table-container">
-        <header className="pickup-header">
-          <div className="title">ECORISE</div>
-          <div className="search-container">
-            <input
-              className="search-input"
-              type="search"
-              placeholder="Search..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              aria-label="Search materials"
-              autoComplete="off"
-            />
-          </div>
-        </header>
         <div className="pickup-request-bar">
           <p>Material Pricing</p>
         </div>

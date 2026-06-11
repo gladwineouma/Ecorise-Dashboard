@@ -1,336 +1,157 @@
-html, body {
- background-color: white;
- margin: 0;
- padding: 0;
- height: 100%;
- overflow-x: hidden;
+/* ==========================================================================
+   GLOBAL APP WRAPPER SYSTEM
+   ========================================================================== */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #fff5f5 !important;
 }
-.main-content {
- padding: 20px ;
- font-family: Arial, sans-serif;
- background: white;
- min-height: 100vh;
- max-width: 1200px;
- margin-left: 22%;
+
+.feedback-main-container {
+  display: flex;
+  background-color: #fff5f5;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
 }
-.feedback-title {
- text-align: center;
- color: maroon;
- margin-bottom: 20px;
- margin-left: 20%;
- font-weight: 700;
- font-size: 42px;
-}
+
+/* ==========================================================================
+   UNIFORM MAIN DASHBOARD WHITE LAYOUT CONTAINER CARD
+   ========================================================================== */
 .feedback-table-container {
- display: flex;
- flex-direction: column;
- background: white;
- border-radius: 12px;
- box-shadow: 0 4px 15px rgba(0,0,0,0.07);
- overflow-x: auto;
- margin: 0 auto;
- margin-left: 30px;
- width: 130%;
+  background-color: white;
+  box-shadow: 0 4px 20px rgba(183, 16, 29, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  flex: 1;
+  margin-top: 0px !important;
+  margin-right: 20px !important;
+  margin-bottom: 20px !important;
+  margin-left: 20px !important;
+  height: calc(100vh - 40px) !important;
+  border-radius: 24px;
 }
+
+/* ==========================================================================
+   HEADER COMPONENT CONFIGURED IN COLUMN BLOCK PATTERN
+   ========================================================================== */
+.feedback-header-bar {
+  display: flex;
+  flex-direction: column;
+  /* 🌟 Stacks header text and pagination controls vertically */
+  align-items: flex-start;
+  /* Snaps everything to the left side */
+  padding: 20px 40px;
+  flex-shrink: 0;
+
+  /* 🌟 Underlines the entire header section right under the pagination row */
+  border-bottom: 2px solid #e9d3d3;
+}
+
+.feedback-title {
+  font-size: 35px;
+  font-weight: bold;
+  color: #7d1215;
+  margin: 0;
+  user-select: none;
+}
+
+.feedback-section {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: auto;
+  padding: 25px 40px 20px 40px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   THE DEEP RED COMPONENT LIST LAYOUT 
+   ========================================================================== */
 .feedback-label-row {
- display: flex;
- background-color: orange;
- border-bottom: 2px solid #CDD4E8;
+  display: flex;
+  background-color: #8B0000;
+  border-bottom: 2px solid #b7101d;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
 }
+
 .label-cell {
- flex: 1;
- font-size: 17pxrem;
- font-weight: 700;
- color: white;
- text-align: center;
- padding: 1.5rem 0;
- text-transform: uppercase;
- letter-spacing: 0.05em;
- border-right: 1px solid #CDD4E8;
- white-space: nowrap;
- user-select: none;
+  flex: 1;
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  text-align: center;
+  padding: 14px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  user-select: none;
 }
-.label-cell:last-child {
- border-right: none;
+
+.values-row {
+  display: flex;
+  border-bottom: 1px solid #f1e3e3;
+  transition: background-color 0.2s ease;
 }
-.feedback-values-row {
- display: flex;
- gap: 70px;
+
+.values-row:hover {
+  background-color: #fff5f5;
+  cursor: pointer;
 }
-.values-column {
- gap: 18px;
- min-width: 180px;
- box-sizing: border-box;
- display: flex;
- flex-direction: column;
-}
-.values-column:last-child {
- border-right: none;
-}
+
 .value-cell {
- flex: 1;
- padding: 1.75rem;
- font-size: 1rem;
- text-align: center;
- border-bottom: none;
- flex: 1;
+  flex: 1;
+  padding: 14px;
+  font-size: 14px;
+  text-align: center;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  word-break: break-word;
 }
-.values-column .value-cell:nth-child(odd) {
- background-color: white;
+
+/* ==========================================================================
+   PAGINATION BUTTON ELEMENTS
+   ========================================================================== */
+.material-pagination-btn {
+  padding: 8px 12px;
+  border-radius: 4px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.2s, border-color 0.2s;
 }
-.pagination-controls {
- display: flex;
- margin-bottom: -250px;
- gap: 10px;
- justify-content: flex-start;
- margin-top: 16px;
- display: flex;
- align-items: center;
- }
-.pagination-controls label {
- font-size: 17px;
- font-weight: 600;
- color: #444;
+
+.material-pagination-btn:hover:not(:disabled) {
+  background: #e9d3d3;
+  border-color: #b7101d;
 }
-.pagination-controls select {
- font-size: 1rem;
- padding: 5px 10px;
- border-radius: 5px;
- border: 1px solid #ccc;
- cursor: pointer;
+
+.material-pagination-btn:disabled {
+  background: #f3f3f3;
+  color: #aaa;
+  cursor: not-allowed;
 }
-.pagination-button {
- background-color: #E67E22;
- border: none;
- color: white;
- padding: 8px 18px;
- border-radius: 6px;
- cursor: pointer;
- font-size: 1.15rem;
- user-select: none;
- transition: background-color 0.2s;
- padding: 0.5rem 1rem;
- margin-right: 1rem;
-}
-.pagination-button:disabled {
- background-color: #ccc;
- cursor: not-allowed;
-}
-.pagination-button:not(:disabled):hover {
- background-color: #CF711A;
-}
+
+/* ==========================================================================
+   LOADING / EXCEPTION STATE WRAPPERS
+   ========================================================================== */
 .feedback-loading,
 .feedback-error,
 .feedback-empty {
- text-align: center;background-color: white;
- font-size: 1.5rem;
- color: #555;
- padding: 2rem;
-}
-.values-row {
- display: flex;
- margin-bottom: 1.5rem;
-}
-.pagination-controls-top{
-    margin-right: 5px;
-    margin-bottom: 3px;
-    margin-left: 200px;
-}
-.pagination-controls{
-  margin-right: 8px;
-  justify-content: center;
-}
-.feedback-table-container{
- display: flex;
-}
-.values-row{
- display: flex;
- border-bottom: 1px solid #ccc;
-}
-
-@media (max-width: 1024px){
-   body{
-    overflow-y: scroll;
-    width: 100%;
-  }
- .pagination-controls {
- display: flex;
- margin-bottom: -45px;
- gap: 10px;
- justify-content: flex-start;
- margin-top: 16px;
- margin-left: 300px;
- display: flex;
- align-items: center;
- }
- .feedback-title {
-   font-size: 30px;
-   padding-left: 20px;
- }
- .label-cell {
-   font-size: 14px;
-   padding: 1rem 0;
- }
- .value-cell {
-   font-size: 14px;
-   padding: 1rem 0.5rem;
- }
- .pagination-controls label {
-   font-size: 1rem;
- }
- .pagination-button {
-   font-size: 1rem;
-   padding: 0.4rem 0.8rem;
- }
-.feedback-table-container {
- display: flex;
- flex-direction: column;
- background: white;
- border-radius: 12px;
- box-shadow: 0 4px 15px rgba(0,0,0,0.07);
- width: 21px;
- padding-left: 1px;
-} 
-  
-}
-@media (max-width:1280px) {
-  body{
-    overflow-y: scroll;
-    width: 100%;
-    
-  }
- .pagination-controls {
- display: flex;
- margin-bottom: -45px;
- gap: 10px;
- justify-content: flex-start;
- margin-top: 16px;
- margin-left: 300px;
- display: flex;
- align-items: center;
- }
- .feedback-title {
-   font-size: 30px;
-   padding-left: 20px;
- }
- .label-cell {
-   font-size: 14px;
-   padding: 1rem 0;
- }
- .value-cell {
-   font-size: 14px;
-   padding: 1rem 0.5rem;
- }
- .pagination-controls label {
-   font-size: 1rem;
- }
- .pagination-button {
-   font-size: 1rem;
-   padding: 0.4rem 0.8rem;
- }
-.feedback-table-container {
- display: flex;
- flex-direction: column;
- background: white;
- border-radius: 12px;
- box-shadow: 0 4px 15px rgba(0,0,0,0.07);
- width: 921px;
- padding-right: 50px;
-} 
-  
-}
-
-@media screen and (min-width:1367px) and (max-width:1500px) {
-   body{
-    overflow-y: scroll;
-    width: 100%;
-  }
- .pagination-controls {
- display: flex;
- margin-bottom: -45px;
- gap: 10px;
- justify-content: flex-start;
- margin-top: 16px;
- margin-left: 300px;
- display: flex;
- align-items: center;
- }
- .feedback-title {
-   font-size: 30px;
-   padding-left: 40px;
- }
- .label-cell {
-   font-size: 14px;
-   padding: 1rem 0;
- }
- .value-cell {
-   font-size: 14px;
-   padding: 1rem 0.5rem;
- }
- .pagination-controls label {
-   font-size: 1rem;
- }
- .pagination-button {
-   font-size: 1rem;
-   padding: 0.4rem 0.8rem;
- }
-.feedback-table-container {
- position: absolute;
- display: flex;
- flex-direction: column;
- background: white;
- border-radius: 12px;
- box-shadow: 0 4px 15px rgba(0,0,0,0.07);
- width: 1091px;
- padding-right: 40px;
-}
-}
-
-@media screen and (max-width:1366px) {
-   body{
-    overflow-y: scroll;
-    width: 100%;
-    
-  }
- .pagination-controls {
- display: flex;
- margin-bottom: -45px;
- gap: 10px;
- justify-content: flex-start;
- margin-top: 16px;
- margin-left: 300px;
- display: flex;
- align-items: center;
- }
- .feedback-title {
-   font-size: 30px;
-   padding-left: 20px;
- }
- .label-cell {
-   font-size: 14px;
-   padding: 1rem 0;
- }
- .value-cell {
-   font-size: 14px;
-   padding: 1rem 0.5rem;
- }
- .pagination-controls label {
-   font-size: 1rem;
- }
- .pagination-button {
-   font-size: 1rem;
-   padding: 0.4rem 0.8rem;
- }
-.feedback-table-container {
- position: absolute;
- display: flex;
- flex-direction: column;
- background: white;
- border-radius: 12px;
- box-shadow: 0 4px 15px rgba(0,0,0,0.07);
- width: 921px;
- margin-left: 50px;
- padding-left: 1px;
-} 
-  
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #7d1215;
+  padding: 3rem;
+  user-select: none;
 }

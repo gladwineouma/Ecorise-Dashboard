@@ -1,84 +1,73 @@
-
-import React from 'react';
-import { FaHome, FaTruck, FaList, FaCreditCard, FaComments, FaCog, FaSignOutAlt } from 'react-icons/fa';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import './style.css';
+import React from "react";
+import {
+  RiLayout4Fill,
+  RiTruckFill,
+  RiListCheck2,
+  RiWallet3Fill,
+  RiMessage3Fill,
+  RiSettings3Fill,
+  RiLogoutBoxRLine
+} from 'react-icons/ri';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import "./style.css";
 
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const menuItems = [
+    { name: "Home", path: "/dashboard", icon: RiLayout4Fill },
+    { name: "Pickups", path: "/pickup", icon: RiTruckFill },
+    { name: "Inventory", path: "/material", icon: RiListCheck2 },
+    { name: "Payments", path: "/payments", icon: RiWallet3Fill },
+    { name: "Feedback", path: "/Feedback", icon: RiMessage3Fill },
+    { name: "Settings", path: "/settings", icon: RiSettings3Fill },
+  ];
 
-  const activeRouteMap = {
-    "/dashboard": "Home",
-    "/pickup": "Pick-up",
-    "/material": "Inventory",
-    "/payment": "Payment",
-    "/feedback": "Feedback",
-  
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/login");
   };
-
-  
-  const currentPage = activeRouteMap[location.pathname] || "";
 
   return (
     <div className="sidebar">
-      <div className="logo">
-        <img src="/Images/company.png" alt="Africa Collect Logo" />
-        <div className="logo-text">
-          <h2 className="bold-text">Africa Collect</h2>
-          <p className="regular-text">Recycling Company</p>
+      {/* HEADER SECTION */}
+      <div className="sidebar-top">
+        <div className="logo">
+          <img src="/Images/company.png" alt="Ecorise Logo" />
+          <div className="logo-text">
+            <h2 className="bold-text">Ecorise</h2>
+            <p className="regular-text">Recycling</p>
+          </div>
         </div>
       </div>
-      <nav>
-        <ul>
-          <li
-            className={`sidebar-item${currentPage === "Home" ? " active" : ""}`}
-            onClick={() => navigate("/dashboard")}
-          >
-            <FaHome className="icon" /> <span className="nav-text">Home</span>
-          </li>
-          <li
-            className={`sidebar-item${currentPage === "Pick-up" ? " active" : ""}`}
-            onClick={() => navigate("/pickup")}
-          >
-            <FaTruck className="icon" /> <span className="nav-text">Pick up</span>
-          </li>
-          <li
-            className={`sidebar-item${currentPage === "Inventory" ? " active" : ""}`}
-            onClick={() => navigate("/material")}
-          >
-            <FaList className="icon" /> <span className="nav-text">Inventory</span>
-          </li>
-          <li
-            className={`sidebar-item${currentPage === "Payment" ? " active" : ""}`}
-            onClick={() => navigate("/payment")}
-          >
-            <FaCreditCard className="icon" /> <span className="nav-text">Payment</span>
-          </li>
-          <li
-            className={`sidebar-item${currentPage === "Feedback" ? " active" : ""}`}
-            onClick={() => navigate("/feedback")}
-          >
-            <FaComments className="icon" /> <span className="nav-text">Feedback</span>
-          </li>
-        </ul>
-      </nav>
+
+      {/* MENU LIST */}
+      <ul className="sidebar-menu">
+        {menuItems.map((item) => {
+          const Icon = item.icon;
+          const isActive = location.pathname === item.path;
+
+          return (
+            <li key={item.path} className={`menu-wrapper ${isActive ? "active" : ""}`}>
+              <Link to={item.path} className="sidebar-item">
+                <Icon className="icon" />
+                <span>{item.name}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+
+      {/* FOOTER */}
       <div className="settings">
-        <ul>
-          <li className="sidebar-item">
-            <Link to="/settings">
-              <FaCog className="icon" /> <span className="nav-text">Settings</span>
-            </Link>
-          </li>
-          <li className="sidebar-item">
-            <Link to="/login">
-              <FaSignOutAlt className="/login" /> <span className="nav-text">Logout</span>
-            </Link>
-          </li>
-        </ul>
+        <div className="sidebar-item logout-item" onClick={handleLogout}>
+          <RiLogoutBoxRLine className="icon" />
+          <span>Logout</span>
+        </div>
       </div>
     </div>
   );
 };
+
 export default Sidebar;

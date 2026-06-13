@@ -6,14 +6,7 @@ body {
   background-color: #fff5f5 !important;
 }
 
-.feedback-main-container {
-  display: flex;
-  background-color: #fff5f5;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-}
+
 
 .feedback-table-container {
   display: flex;
@@ -26,11 +19,6 @@ body {
   box-sizing: border-box;
   padding: 0;
   gap: 0;
-  margin-top: 50px !important;
-  margin-right: 20px !important;
-  margin-bottom: 20px !important;
-  margin-left: 20px !important;
-  height: calc(100vh - 50px) !important;
 }
 
 

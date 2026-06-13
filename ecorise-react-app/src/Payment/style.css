@@ -9,18 +9,6 @@ body {
   background-color: #fff5f5 !important;
 }
 
-.feedback-main-container {
-  display: flex;
-  background-color: #fff5f5;
-  height: 100vh;
-  width: 100%;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-/* ==========================================================================
-   UNIFORM MAIN DASHBOARD WHITE LAYOUT CONTAINER CARD
-   ========================================================================== */
 .feedback-table-container {
   background-color: white;
   box-shadow: 0 4px 20px rgba(183, 16, 29, 0.1);

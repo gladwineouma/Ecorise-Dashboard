@@ -25,7 +25,7 @@ const PaymentForm = () => {
   };
 
   return (
-    <div className="feedback-main-container">
+    <div className="pickup-table-container">
       {/* 🌟 Uniform card container styling built-in */}
       <div className="feedback-table-container payment-card-wrapper">
 

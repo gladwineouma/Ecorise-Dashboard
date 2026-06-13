@@ -65,7 +65,7 @@ function Feedback() {
   if (!feedback.length) return <div className="feedback-empty">No feedback available.</div>;
 
   return (
-    <div className="feedback-main-container">
+    <div className="pickup-table-container">
       <div className="feedback-table-container">
 
         {/* 🌟 STACKED HEADER BAR: Forces pagination row directly below heading label text */}

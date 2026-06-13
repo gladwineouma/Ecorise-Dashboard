@@ -1,6 +1,15 @@
 import React from "react";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
-import { FaUsers, FaTshirt, FaStar, FaProductHunt, FaTruckPickup, FaMonero } from "react-icons/fa";
+import {
+  RiGroupFill,          // Replaces FaUsers (Total traders)
+  RiShirtFill,          // Replaces FaTshirt (Total collected materials)
+  RiCopperCoinFill,     // Replaces FaStar (Points awarded)
+  RiGiftFill,           // Replaces FaProductHunt (Available product reward)
+  RiTimeFill,           // Replaces FaTruckPickup (Pending pickup requests)
+  RiMoneyDollarBoxFill,  // Replaces FaMonero (Total amount paid)
+  RiHandCoinFill,
+  RiTimerFill
+} from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import { usePickups } from '../hooks/useFetchPickups';
 import { useProducts } from '../hooks/useFetchProducts';
@@ -53,12 +62,12 @@ function Dashboard() {
     `Ksh ${amount >= 1000 ? (amount / 1000).toFixed(1) + 'K' : amount.toLocaleString()}`;
 
   const items = [
-    { icon: <FaUsers />, label: "Total traders", value: totalTraders },
-    { icon: <FaTshirt />, label: "Total collected materials", value: totalMaterialPickups },
-    { icon: <FaStar />, label: "Points awarded", value: totalPointsAwarded },
-    { icon: <FaProductHunt />, label: "Available product reward", value: availableProduct },
-    { icon: <FaTruckPickup />, label: "Pending pickup requests", value: pendingPickupCount },
-    { icon: <FaMonero />, label: "Total amount paid", value: formatKsh(totalAmountPaid) }
+    { icon: <RiGroupFill />, label: "Total traders", value: totalTraders },
+    { icon: <RiShirtFill />, label: "Total collected materials", value: totalMaterialPickups },
+    { icon: <RiHandCoinFill />, label: "Points awarded", value: totalPointsAwarded },
+    { icon: <RiGiftFill />, label: "Available product reward", value: availableProduct },
+    { icon: <RiTimerFill />, label: "Pending pickup requests", value: pendingPickupCount },
+    { icon: <RiMoneyDollarBoxFill />, label: "Total amount paid", value: formatKsh(totalAmountPaid) }
   ];
 
   const allMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"];

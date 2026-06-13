@@ -14,7 +14,7 @@ body {
     overflow: hidden;
     box-sizing: border-box;
     position: relative;
-    margin-top: -5px;
+    margin-top: -5%;
 }
 .settings-coming-soon-wrapper {
     background-color: white;

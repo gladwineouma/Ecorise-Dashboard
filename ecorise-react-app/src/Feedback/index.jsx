@@ -65,8 +65,8 @@ function Feedback() {
   if (!feedback.length) return <div className="feedback-empty">No feedback available.</div>;
 
   return (
-    <div className="pickup-table-container">
-      <div className="feedback-table-container">
+    <div className="">
+      <div className="pickup-table-container">
 
         {/* 🌟 STACKED HEADER BAR: Forces pagination row directly below heading label text */}
         <div className="feedback-header-bar" style={{ display: "flex", flexDirection: "column", alignItems: "flex-start" }}>

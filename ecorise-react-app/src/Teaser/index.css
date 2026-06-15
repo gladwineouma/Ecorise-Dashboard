@@ -1,152 +1,192 @@
+/* ==========================================================================
+   1. Global Viewport Reset
+   ========================================================================== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  /* Prevents global scrollbars completely */
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ==========================================================================
+   2. Main Container (Fixed Fullscreen Overlay to ignore parent layout bleeding)
+   ========================================================================== */
 .teaser-container {
   display: flex;
-  min-height: 100vh;
-  width: 100%;
-}
-.teaser-image-side {
-  flex: 1;
-  width: 1060px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
   height: 100vh;
+  overflow: hidden;
+  z-index: 9999;
 }
+
+/* ==========================================================================
+   3. Left Side: Locked Image Column
+   ========================================================================== */
+.teaser-image-side {
+  flex: 0 0 55%;
+  width: 55%;
+  min-width: 0;
+  /* Prevents raw image resource from blowing out container width */
+  height: 100vh;
+  overflow: hidden;
+}
+
 .teaser-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
+
+/* ==========================================================================
+   4. Right Side: Centered Content Panel
+   ========================================================================== */
+/* --- Right Side: Centered Content Panel --- */
 .teaser-content {
-  flex: 1;
+  flex: 0 0 45%;
+  width: 45%;
+  min-width: 0;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  background: #fff;
-  padding: 2rem;
+
+  /* CRITICAL CHANGE: Pulls everything to the top so they sit tightly together */
+  justify-content: flex-start;
+  padding-top: 10vh;
+  /* Pushes the entire block down cleanly from the top of the screen */
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background: #ffffff;
 }
+
+/* --- Brand Logo --- */
 .teaser-logo {
-  max-width: 80%;
-  width: 400px;
-  margin-bottom: 1.5rem;
+  max-width: 90%;
+  width: 440px;
+  height: auto;
+  /* margin-bottom: 10%; */
+  /* Small controlled gap between logo and text */
 }
+
+/* --- Text Headers --- */
 .teaser-text {
-  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 6.5rem;
+  gap: 0.25rem;
+  /* Shrunk gap between headers */
+  margin-bottom: 2rem;
+  /* Small controlled gap before buttons start */
+  text-align: center;
 }
+
 .teaser-heading {
-  color: maroon;
-  font-size: 2.5rem;
-  text-align: center;
+  color: #800000;
+  /* Maroon */
+  font-size: 2.6rem;
   line-height: 1.1;
+  font-weight: 700;
 }
+
 .teaser-subheading {
-  color: #333;
-  font-size: 1.25rem;
-  text-align: center;
+  color: #333333;
+  font-size: 1.15rem;
   line-height: 1.2;
-  max-width: 80%;
 }
+
 .teaser-buttons {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  width: 100%;
 }
+
 .teaser-btn {
-  width: 200px;
-  padding: 1rem;
-  font-size: 1.125rem;
-  border-radius: 8px;
+  width: 220px;
+  padding: 0.8rem 1rem;
+  font-size: 1.05rem;
+  border-radius: 10px;
   text-align: center;
   text-decoration: none;
-  transition: background-color 0.2s, color 0.2s;
+  font-weight: 500;
+  display: inline-block;
+  cursor: pointer;
+  transition: background-color 0.18s ease, transform 0.12s ease;
+
+  /* Hard overrides to fully strip black focus rings and borders */
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
-.teaser-btn-login {
-  background-color: maroon;
-  color: white;
-}
-.teaser-btn-login:hover {
-  background-color: orange;
-}
+
+.teaser-btn-login,
 .teaser-btn-create {
-  background-color: maroon;
-  color: white;
+  background-color: #800000;
+  /* Maroon */
+  color: #ffffff;
+  border: none !important;
+  outline: none !important;
 }
-.teaser-btn-create:hover {
-  background-color: orange;
-  color: maroon;
+
+/* Interactive States */
+.teaser-btn:hover,
+.teaser-btn:focus,
+.teaser-btn:active {
+  transform: translateY(-2px);
+  background-color: #d33c41;
+  /* Lighter maroon tint on hover */
+  color: #ffffff;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
-@media (min-width: 1024px) {
-  .teaser-container {
-    flex-direction: row;
-  }
-  .teaser-image-side {
-    flex: 1.2;
-    width: 38%;
-  }
-  .teaser-content {
-    flex: 0.8;
-    padding: 3rem;
-  }
-  .teaser-logo {
-    width: 500px;
-    margin-bottom: 2rem;
-    padding-bottom: 60px;
-  }
-  .teaser-text {
-    margin-bottom: 2rem;
-  }
-  .teaser-heading {
-    font-size: 3rem;
-  }
-  .teaser-subheading {
-    font-size: 1.5rem;
-    max-width: 70%;
-    padding-bottom: 50px;
-  }
-  .teaser-btn {
-    width: 250px;
-    font-size: 1.25rem;
-  }
-}
+
+/* ==========================================================================
+   6. Responsive Viewports (Stacked Configuration for Mobile / Tablets)
+   ========================================================================== */
 @media (max-width: 1023px) {
   .teaser-container {
     flex-direction: column;
   }
+
   .teaser-image-side {
-    height: 50vh;
-    width: 50%;
+    flex: none;
+    width: 100%;
+    height: 40vh;
   }
+
   .teaser-content {
+    flex: none;
+    width: 100%;
+    height: 60vh;
     padding: 1.5rem;
   }
+
   .teaser-logo {
-    max-width: 90%;
-    width: 300px;
+    width: 240px;
     margin-bottom: 1rem;
   }
-  .teaser-text {
-    gap: 0.25rem;
-    margin-bottom: 1rem;
-  }
+
   .teaser-heading {
-    font-size: 2rem;
+    font-size: 1.8rem;
   }
-  .teaser-subheading {
-    font-size: 1rem;
-    max-width: 90%;
-  }
+
   .teaser-btn {
-    width: 180px;
-    padding: 0.75rem;
-    font-size: 1rem;
+    width: 200px;
+    padding: 0.7rem;
   }
 }

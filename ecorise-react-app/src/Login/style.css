@@ -1,82 +1,128 @@
-body {
+/* ==========================================================================
+   1. Global Viewport Reset
+   ========================================================================== */
+* {
   margin: 0;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  background: #fff;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* ==========================================================================
+   2. Main Container (Fixed Fullscreen Overlay like Teaser)
+   ========================================================================== */
 .login-container {
   display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100vw;
   height: 100vh;
-  min-height: 0;
-  background-color: #fff;
+  overflow: hidden;
+  z-index: 9999;
 }
+
+/* ==========================================================================
+   3. Left Side: Locked Image Column
+   ========================================================================== */
+.login-image-side {
+  flex: 0 0 55%;
+  width: 55%;
+  min-width: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
 .login-image {
-  flex: 0 0 50%;
-  height: 100vh;
-  background-image: url(https://muwo1.unibo.it/steamgreenuniboit/wp-content/uploads/sites/6/2021/11/alejo-reinoso-IlmDnJg5cg-unsplash-768x1024.jpg);
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
+
+/* ==========================================================================
+   4. Right Side: Centered Content Panel (Top Aligned like Teaser)
+   ========================================================================== */
 .login-form-section {
-  flex: 0 0 50%;
+  flex: 0 0 45%;
+  width: 45%;
+  min-width: 0;
   height: 100vh;
-  background: #fff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 24px 32px;
+  justify-content: flex-start;
+  /* Pulls form cleanly toward the top */
+  padding-top: 10vh;
+  /* Controlled gap from the top of the viewport */
+  padding-left: 2rem;
+  padding-right: 2rem;
+  background: #ffffff;
   overflow-y: auto;
-  box-sizing: border-box;
-  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.05);
 }
+
+/* ==========================================================================
+   5. Form Component Elements
+   ========================================================================== */
 .login-form {
   width: 100%;
-  max-width: 440px;
+  max-width: 380px;
+  /* Locks form constraint size safely */
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
+
 .login-title {
-  font-size: 2.2rem;
+  font-size: 2.6rem;
+  /* Size matched exactly to teaser heading */
   font-weight: 700;
-  color: #8A2324;
+  color: #800000;
+  /* Maroon color updated to match teaser styling */
   text-align: center;
-  margin-bottom: 32px;
-  letter-spacing: 0.6px;
+  margin-bottom: 1.5rem;
+  line-height: 1.1;
 }
+
 .login-label {
-  font-size: 1.1rem;
-  color: #353535;
+  font-size: 1.05rem;
+  color: #333333;
+  /* Dark gray match */
   font-weight: 600;
-  margin-bottom: 8px;
+  margin-bottom: -4px;
   user-select: none;
 }
+
+/* Input Icon Wrappers */
 .input-icon-wrapper {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
 }
+
 .input-icon {
   position: absolute;
   left: 14px;
-  height: 42px;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   color: #C4C1C1;
   pointer-events: none;
   display: flex;
   align-items: center;
   z-index: 2;
-  font-family: Arial, sans-serif;
 }
+
 .toggle-icon {
   position: absolute;
   right: 14px;
-  height: 42px;
   font-size: 1.15rem;
   cursor: pointer;
   display: flex;
@@ -84,145 +130,137 @@ body {
   background: none;
   border: none;
   z-index: 3;
-  color: #8A2324;
+  color: #800000;
+  /* Maroon accent updated */
   transition: color 0.25s ease;
+  pointer-events: auto;
 }
+
 .toggle-icon:hover {
-  color: #A03A33;
+  color: #d33c41;
+  /* Hover accent matched to teaser button */
 }
+
+/* Form Fields */
 .login-input {
   width: 100%;
-  height: 42px;
-  box-sizing: border-box;
+  height: 44px;
   padding-left: 44px;
   padding-right: 44px;
   font-size: 1rem;
-  line-height: 1.5;
   border: 2px solid #D39B6A;
-  border-radius: 4px;
-  color: #222;
-  background-color: #fff;
+  border-radius: 10px;
+  /* Rounded borders to match button style */
+  color: #222222;
+  background-color: #ffffff;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  outline-offset: 2px;
-  position: relative;
-  user-select: text;
-  font-family: Arial, sans-serif;
+  outline: none;
 }
+
 .login-input::placeholder {
   color: #C4C1C1;
-  font-size: 1rem;
-  line-height: 1.5;
   opacity: 1;
-  user-select: none;
 }
+
 .login-input:focus {
-  border-color: #8A2324;
-  box-shadow: 0 0 6px rgba(138, 35, 36, 0.5);
-  background-color: #fff;
+  border-color: #800000;
+  box-shadow: 0 0 6px rgba(128, 0, 0, 0.3);
 }
+
+/* Submit Action Button (Styled exactly like teaser-btn) */
 .login-button {
   width: 100%;
-  height: 44px;
-  background-color: #8A2324;
-  color: #fff;
-  font-size: 1.15rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 8px;
+  height: 46px;
+  background-color: #800000;
+  /* Maroon matching teaser */
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 500;
+  border: none !important;
+  outline: none !important;
+  border-radius: 10px;
+  /* Radius style synchronized */
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  user-select: none;
   margin-top: 12px;
+  transition: background-color 0.18s ease, transform 0.12s ease;
 }
+
 .login-button:hover:not(:disabled) {
-  background-color: #A03A33;
+  transform: translateY(-2px);
+  background-color: #d33c41;
+  /* Lighter maroon tint matched from teaser */
 }
+
 .login-button:disabled {
   background-color: #B3746A;
-  cursor: default;
+  cursor: not-allowed;
+  transform: none;
 }
+
 .error-message {
   color: #D32F2F;
   font-weight: 600;
   text-align: center;
-  margin-bottom: 12px;
-  user-select: none;
+  font-size: 0.95rem;
 }
+
+/* Bottom Registration Links */
 .login-links {
-  margin-top: 20px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
 }
+
 .signup-question {
-  font-size: 1rem;
-  color: #222;
-  user-select: none;
+  font-size: 0.95rem;
+  color: #333333;
 }
+
 .signup-link {
-  color: #8A2324;
+  color: #800000;
   font-weight: 700;
   text-decoration: none;
   margin-left: 4px;
-  transition: text-decoration 0.3s ease;
 }
-.signup-link:hover,
-.signup-link:focus {
+
+.signup-link:hover {
   text-decoration: underline;
 }
+
+/* Custom Scrollbars */
 .login-form-section::-webkit-scrollbar {
   width: 6px;
 }
+
 .login-form-section::-webkit-scrollbar-thumb {
-  background-color: rgba(138, 35, 36, 0.4);
+  background-color: rgba(128, 0, 0, 0.4);
   border-radius: 3px;
 }
-.login-form-section::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-@media (max-width: 1280px) {
+
+/* ==========================================================================
+   6. Responsive Viewports (Stacked Configuration for Mobile / Tablets)
+   ========================================================================== */
+@media (max-width: 1023px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .login-image-side {
+    flex: none;
+    width: 100%;
+    height: 40vh;
+  }
+
   .login-form-section {
-    padding: 16px 24px;
+    flex: none;
+    width: 100%;
+    height: 60vh;
+    padding: 1.5rem;
+    padding-top: 2.5rem;
   }
-  .login-form {
-    max-width: 100%;
-  }
+
   .login-title {
-    font-size: 1.9rem;
-    margin-bottom: 24px;
-  }
-  .login-label {
-    font-size: 1rem;
-  }
-  .login-input {
-    font-size: 0.95rem;
-    height: 40px;
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-  .input-icon {
-    left: 12px;
-    font-size: 1rem;
-    height: 40px;ch-container{
-  position: relative;
-  padding-right: 90pv;
-}
-  }
-  .toggle-icon {
-    right: 12px;
-    font-size: 1.1rem;
-    height: 40px;
-  }
-  .login-button {
-    font-size: 1rem;
-    height: 42px;
-    margin-top: 10px;
-  }
-  .signup-question {
-    font-size: 0.95rem;
-  }
-  .error-message {
-    font-size: 0.95rem;
+    font-size: 1.8rem;
   }
 }

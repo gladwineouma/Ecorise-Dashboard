@@ -1,6 +1,5 @@
-/* ==========================================================================
-   GLOBAL APP WRAPPER SYSTEM
-   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
 html,
 body {
   margin: 0;
@@ -9,24 +8,34 @@ body {
   background-color: #fff5f5 !important;
 }
 
-.feedback-table-container {
-  background-color: white;
-  box-shadow: 0 4px 20px rgba(183, 16, 29, 0.1);
+/* OUTER container: full viewport height but allow inner scrollbars */
+.payment-table-container {
+  background-color: #ffffff;
+  box-shadow: 0 4px 20px rgba(183, 16, 29, 0.08);
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px !important;
+  margin-bottom: 20px !important;
+  height: calc(100vh - 40px) !important;
+  border-radius: 24px;
+  flex: 1;
+  /* allow inner scrollable area to display its scrollbar */
+  overflow: visible;
+  margin-top: 0px !important;
+}
+
+/* Inner card wrapper — clips to rounded corners and fills parent */
+.payment-card-wrapper,
+.feedback-table-container.payment-card-wrapper {
+  height: 100%;
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  flex: 1;
-  margin-top: 70px !important;
-  margin-right: 20px !important;
-  margin-left: 20px !important;
-  margin-bottom: 10px !important;
-  height: calc(100vh - 90px) !important;
-  border-radius: 24px;
+  /* visual clipping but let the inner scroll area show scrollbar */
 }
 
-/* ==========================================================================
-   HEADER COMPONENT 
-   ========================================================================== */
+/* Header bar (keeps the same look as your original) */
+.payment-header-bar,
 .feedback-header-bar {
   display: flex;
   align-items: center;
@@ -34,8 +43,10 @@ body {
   padding: 20px 40px;
   flex-shrink: 0;
   border-bottom: 2px solid #e9d3d3;
+  background: transparent;
 }
 
+.payment-title,
 .feedback-title {
   color: #7d1215;
   font-weight: 700;
@@ -44,24 +55,28 @@ body {
   user-select: none;
 }
 
-/* ==========================================================================
-   FORM CONTAINER DESIGN MODIFICATIONS
-   ========================================================================== */
+/* SCROLLABLE FORM AREA: consumes remaining space and scrolls */
 .payment-form-content {
-  flex: 1;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   padding: 30px 40px;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   box-sizing: border-box;
 }
 
+/* small right padding so content doesn't butt up against scrollbar */
+.payment-form-content>* {
+  padding-right: 6px;
+}
+
+/* Form layout (same proportions as your provided file) */
 .form-grid-layout {
   display: flex;
   flex-direction: column;
   gap: 20px;
   max-width: 500px;
-  /* Safe, elegant vertical inputs layout width */
   width: 100%;
 }
 
@@ -96,12 +111,9 @@ body {
 .payment-label input:focus,
 .payment-label textarea:focus {
   border-color: #b7101d;
-  /* Snaps to theme accent line color on select focus */
 }
 
-/* ==========================================================================
-   ACTION BUTTON ROWS & NOTIFICATION MESSAGES
-   ========================================================================== */
+/* ACTION ROW & BUTTONS */
 .payment-action-row {
   display: flex;
   align-items: center;
@@ -144,4 +156,41 @@ body {
   font-weight: 600;
   font-size: 14px;
   margin: 0;
+}
+
+/* RESPONSIVE TWEAKS */
+@media (max-width: 1024px) {
+  .payment-table-container {
+    margin: 10px;
+    border-radius: 16px;
+  }
+
+  .payment-header-bar,
+  .feedback-header-bar {
+    padding: 16px;
+  }
+
+  .payment-title,
+  .feedback-title {
+    font-size: 24px;
+  }
+
+  .payment-form-content {
+    padding: 16px;
+  }
+
+  .form-grid-layout {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .payment-form-content {
+    padding: 12px;
+  }
+
+  .payment-label input,
+  .payment-label textarea {
+    height: auto;
+  }
 }

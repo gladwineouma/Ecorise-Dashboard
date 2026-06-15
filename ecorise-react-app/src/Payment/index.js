@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useStkPush } from '../hooks/useStkPush';
+import { useStkPush } from '../hooks/useStkPush'; // keep your current relative path
 import './style.css';
 
 const PaymentForm = () => {
@@ -25,16 +25,16 @@ const PaymentForm = () => {
   };
 
   return (
-    <div className="pickup-table-container">
-      {/* 🌟 Uniform card container styling built-in */}
-      <div className="feedback-table-container payment-card-wrapper">
+    <div className="payment-table-container">
+      {/* standalone card wrapper for payment */}
+      <div className="payment-card-wrapper">
 
-        {/* TOP HEADER BAR: Matching text lines */}
-        <div className="feedback-header-bar">
-          <h1 className="feedback-title">Ecorise Payment Platform</h1>
+        {/* TOP HEADER BAR */}
+        <div className="payment-header-bar">
+          <h1 className="payment-title">Ecorise Payment Platform</h1>
         </div>
 
-        {/* MIDDLE FORM AREA */}
+        {/* SCROLLABLE FORM AREA */}
         <form onSubmit={handleSubmit} className="payment-form-content">
           <div className="form-grid-layout">
             <label className="payment-label">
@@ -86,7 +86,7 @@ const PaymentForm = () => {
             </label>
           </div>
 
-          {/* ACTION FOOTER ELEMENTS */}
+          {/* ACTION FOOTER */}
           <div className="payment-action-row">
             <button type="submit" disabled={loading} className="material-btn">
               {loading ? 'Processing...' : 'Pay Now'}

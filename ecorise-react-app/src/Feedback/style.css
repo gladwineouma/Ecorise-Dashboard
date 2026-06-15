@@ -8,7 +8,7 @@ body {
 
 
 
-.feedback-table-container {
+/* .feedback-table-container {
   display: flex;
   flex-direction: column;
   flex: 1;
@@ -19,7 +19,7 @@ body {
   box-sizing: border-box;
   padding: 0;
   gap: 0;
-}
+} */
 
 
 .feedback-header-bar {

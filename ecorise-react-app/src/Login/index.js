@@ -4,16 +4,19 @@ import { MdEmail } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 import { useUsers } from "../hooks/useFetchUsers";
+
 const LoginScreen = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { data: users, loading, error: hookError } = useUsers();
+
   const handleChange = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
     if (error) setError("");
   };
+
   const handleSubmit = e => {
     e.preventDefault();
     setError("");
@@ -33,9 +36,14 @@ const LoginScreen = () => {
       setError("Invalid email or password.");
     }
   };
+
   return (
     <div className="login-container">
-      <div className="login-image" />
+      {/* FIXED: Added inline background-image targeting the public folder asset */}
+      <div
+        className="login-image"
+        style={{ backgroundImage: "url('/Images/clothe.png')" }}
+      />
       <div className="login-form-section">
         <form className="login-form" onSubmit={handleSubmit}>
           <h2 className="login-title">Login</h2>
@@ -89,4 +97,5 @@ const LoginScreen = () => {
     </div>
   );
 };
+
 export default LoginScreen;
